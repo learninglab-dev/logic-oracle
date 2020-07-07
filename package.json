@@ -1,0 +1,20 @@
+{
+  "name": "answer-deducer",
+  "version": "1.0.0",
+  "description": "A module for deducing answers to yes-no questions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learninglab-dev/answer-deducer.git"
+  },
+  "author": "ldavidson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/learninglab-dev/answer-deducer/issues"
+  },
+  "homepage": "https://github.com/learninglab-dev/answer-deducer#readme"
+}
