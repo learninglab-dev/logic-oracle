@@ -18,6 +18,17 @@ export default function knaveAnswers(identities, question, qParams) {
         }
         return false
       }
+    case 'Different':
+      if (qParams[0] === 'all') {
+        const characters = Object.keys(identities)
+        const roles = new Set(Object.values(identities))
+        const match = characters.length === roles.size ? false : true
+        console.log(roles)
+        if (match) {
+          return true
+        }
+        return false
+      }
     default:
       return "something went wrong and I don't have an answer"
   }

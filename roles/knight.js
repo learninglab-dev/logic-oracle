@@ -18,6 +18,17 @@ export default function knightAnswers(identities, question, qParams) {
         }
         return true
       }
+    case 'Different':
+      if (qParams[0] === 'all') {
+        const characters = Object.keys(identities)
+        const roles = new Set(Object.values(identities))
+        const match = characters.length === roles.size ? false : true
+        console.log(roles)
+        if (match) {
+          return false
+        }
+        return true
+      }
     default:
       return "something went wrong and I don't have an answer"
   }

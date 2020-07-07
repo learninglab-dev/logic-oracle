@@ -30,4 +30,4 @@ export default function checkByRole(identities, question, qParams, answerer) {
 
 console.log(JSON.stringify(identities, null, 2))
 console.log(checkByRole(identities, 'Knight', null, 'A'))
-console.log(checkByRole(identities, 'Same', ['all'], 'A'))
+console.log(checkByRole(identities, 'Different', ['all'], 'A'))
