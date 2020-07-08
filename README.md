@@ -1,7 +1,7 @@
 # answer-deducer
 ### a.k.a The Oracle of Knights & Knaves
 
-A module for deducing answers to yes-no questions on the island of Knights & Knaves
+A module for deducing answers to yes-no questions on the Island of Knights & Knaves
 
 ### Installation
 
@@ -20,7 +20,7 @@ const deducer = require('answer-deducer')
 
 Then ask a question:
 ```js
-const answer = deducer(identities, answerer, question qParams)
+const answer = deducer(identities, answerer, question, qParams)
 ```
 Input | Syntax | Optional ?
 --- | --- | ---
