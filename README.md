@@ -33,7 +33,7 @@ Input | Syntax | Optional ?
 
 Returns `true` or `false` in the role of the character specified as answerer. So, if the specified character is a Knave and the statement is true the module will return `false`. See below for more on character identities.
 
-#### Identities
+### Identities
 
 You may name your characters any string you wish, though tradition would have it that your first character's name starts with 'A' and your second with 'B', etc. Character names are keys in your `identities` object with roles as values. Possible values for roles are the following:  
 
