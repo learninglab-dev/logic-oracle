@@ -4,8 +4,27 @@
   "description": "A module for deducing answers to yes-no questions",
   "main": "index.js",
   "type": "module",
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "test.js"
+    ]
+  },
+  "babel": {
+    "presets": ["@babel/preset-env"]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    }
+  },
   "scripts": {
-    "test": "test"
+    "test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -16,5 +35,9 @@
   "bugs": {
     "url": "https://github.com/learninglab-dev/answer-deducer/issues"
   },
-  "homepage": "https://github.com/learninglab-dev/answer-deducer#readme"
+  "homepage": "https://github.com/learninglab-dev/answer-deducer#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
+    "jest": "^26.1.0"
+  }
 }
