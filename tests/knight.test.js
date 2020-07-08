@@ -1,4 +1,4 @@
-import answerByRole from './index.js'
+import answerByRole from '../index.js'
 
 
 //not using but here in case a random draw is useful for other tests

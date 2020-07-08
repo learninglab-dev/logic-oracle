@@ -1,4 +1,4 @@
-import answerByRole from './index.js'
+import answerByRole from '../index.js'
 
 
 const roles = ['K', 'N', 'D', 'M']
