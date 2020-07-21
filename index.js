@@ -1,19 +1,22 @@
-import knightAnswers from './roles/knight.js'
-import knaveAnswers from './roles/knave.js'
-import dragonAnswers from './roles/dragon.js'
-import monkAnswers from './roles/monk.js'
+import getTruthValue from './logic/getTruthValue.js'
 
 
-export default function answerByRole(identities, answerer, question, qParams) {
+export default function answerByRole(identities, answerer, questions) {
+  const tVal = getTruthValue(identities, answerer, questions)
   switch (identities[answerer]) {
     case 'K':
-      return knightAnswers(identities, answerer, question, qParams)
+      return tVal
     case 'N':
-      return knaveAnswers(identities, answerer, question, qParams)
+      return !tVal
     case 'D':
-      return dragonAnswers(identities, answerer, question, qParams)
+      const knightPresent = Object.values(identities).find(id => id === 'K')
+      if (knightPresent) {
+        return !tVal
+      }
+      return tVal
     case 'M':
-      return monkAnswers(identities, answerer, question, qParams)
+      // TODO: implement a  more crafty Monk here...
+      return [true, false][Math.floor(Math.random() * 2)]
     default:
       console.log('invalid answerer identity')
       return

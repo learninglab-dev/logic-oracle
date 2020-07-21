@@ -12,7 +12,7 @@ const identities = {
 
 test('Are you a dragon? returns false only if Knight present', () => {
   console.log(identities)
-  const result = answerByRole(identities, 'A', 'Dragon')
+  const result = answerByRole(identities, 'A', ['Dragon'])
   const knightPresent = identities.C === 'K' ? true : false
   console.log(`C's role is: ${identities.C}`);
   console.log(result)
