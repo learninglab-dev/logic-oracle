@@ -76,10 +76,47 @@ test('Is A a Knight and B a Knave and not the same? returns true', () => {
   const questions = {
     1: ['Knight', ['A']],
     2: ['Knave', ['B']],
-    3: ['Same', ['A', 'B']],
+    3: ['Different', ['A', 'B']],
     c: 'AND'
   }
   const result = answerByRole(identities, 'A', questions)
   console.log(`Is A a Knight and B a Knave and not the same? ${result}`)
+  expect(result).toBe(true)
+})
+
+test('Is A or B a Knight and B a Knave? returns true', () => {
+  const questions = {
+      1: {
+        1: ['Knight'],
+        2: ['Knight', ['B']],
+        c: 'OR'
+      },
+      2: ['Knave', ['B']],
+      c: 'AND'
+    }
+    const result = answerByRole(identities, 'A', questions)
+    console.log(`Is A or B a Knight and B a Knave? ${result}`)
+    expect(result).toBe(true)
+})
+
+test('Is A or B a Knight but not both?', () => {
+  const questions = {
+    1: {
+      1: ['Knight'],
+      2: ['Knight', ['B']],
+      c: 'OR'
+    },
+    2: {
+      1: {
+        1: ['Knight'],
+        2: ['Knight', ['B']],
+        c: 'AND'
+      },
+      c: 'NOT'
+    },
+    c: 'AND'
+  }
+  const result = answerByRole(identities, 'A', questions)
+  console.log(`Is A or B a Knight but not both? ${result}`)
   expect(result).toBe(true)
 })
