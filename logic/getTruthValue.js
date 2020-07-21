@@ -1,11 +1,5 @@
 import applyPredicates from './predicates.js'
-import {
-  conjunction,
-  disjunction,
-  conditional,
-  biconditional,
-  applyConnectives
-} from './connectives'
+import { applyConnectives } from './connectives'
 
 
 export default function getTruthValue(identities, answerer, questions) {

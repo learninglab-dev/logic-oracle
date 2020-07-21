@@ -1,38 +1,38 @@
 import applyPredicates from './predicates.js'
 
 
-export function conjunction(identities, answerer, questions) {
-  const qs = Object.keys(questions).filter(key => key !== 'c')
-  for (const q of qs) {
-    if (!applyPredicates(identities, answerer, questions[q])) {
-      return false
-    }
-  }
-  return true
-}
-export function disjunction(identities, answerer, questions) {
-  const qs = Object.keys(questions).filter(key => key !== 'c')
-  for (const q of qs) {
-    if (applyPredicates(identities, answerer, questions[q])) {
-      return true
-    }
-  }
-  return false
-}
-export function conditional(identities, answerer, questions) {
-  if (applyPredicates(identities, answerer, questions[1]) && !applyPredicates(identities, answerer, questions[2])) {
-    return false
-  }
-  return true
-}
-export function biconditional(identities, answerer, questions) {
-  if ((applyPredicates(identities, answerer, questions[1]) && applyPredicates(identities, answerer, questions[2])) || (!applyPredicates(identities, answerer, questions[1]) && !applyPredicates(identities, answerer, questions[2]))) {
-    return true
-  }
-  return false
-}
+// export function conjunction(identities, answerer, questions) {
+//   const qs = Object.keys(questions).filter(key => key !== 'c')
+//   for (const q of qs) {
+//     if (!applyPredicates(identities, answerer, questions[q])) {
+//       return false
+//     }
+//   }
+//   return true
+// }
+// export function disjunction(identities, answerer, questions) {
+//   const qs = Object.keys(questions).filter(key => key !== 'c')
+//   for (const q of qs) {
+//     if (applyPredicates(identities, answerer, questions[q])) {
+//       return true
+//     }
+//   }
+//   return false
+// }
+// export function conditional(identities, answerer, questions) {
+//   if (applyPredicates(identities, answerer, questions[1]) && !applyPredicates(identities, answerer, questions[2])) {
+//     return false
+//   }
+//   return true
+// }
+// export function biconditional(identities, answerer, questions) {
+//   if ((applyPredicates(identities, answerer, questions[1]) && applyPredicates(identities, answerer, questions[2])) || (!applyPredicates(identities, answerer, questions[1]) && !applyPredicates(identities, answerer, questions[2]))) {
+//     return true
+//   }
+//   return false
+// }
 
-
+// TODO: allow more than two conjuncts for and/or ??
 export function applyConnectives(question) {
   switch (question.c) {
     case 'AND':
