@@ -34,7 +34,6 @@ export function biconditional(identities, answerer, questions) {
 
 
 export function applyConnectives(question) {
-  console.log('here');
   switch (question.c) {
     case 'AND':
       return question[1] && question[2] ? true : false
@@ -42,6 +41,10 @@ export function applyConnectives(question) {
       return question[1] || question[2] ? true : false
     case 'NOT':
       return !question[1] ? true : false
+    case 'IF':
+      return question[1] && !question[2] ? false : true
+    case 'IFF':
+      return (question[1] && question[2]) || (!question[1] && !question[2]) ? true : false
     default:
       console.log('invalid connective');
       return

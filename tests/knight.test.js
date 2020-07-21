@@ -120,3 +120,32 @@ test('Is A or B a Knight but not both?', () => {
   console.log(`Is A or B a Knight but not both? ${result}`)
   expect(result).toBe(true)
 })
+
+test('Crazy sentence...', () => {
+  const questions = {
+    1: {
+      1: ['Knight'],
+      2: ['Knight', ['B']],
+      c: 'AND'
+    },
+    2: {
+      1: {
+        1: ['Monk', ['C']],
+        2: ['Dragon', ['C']],
+        c: 'OR'
+      },
+      2: {
+        1: ['Knave', ['D']],
+        c: 'NOT'
+      },
+      c: 'AND'
+    },
+    c: 'IFF'
+  }
+  const result = answerByRole(identities, 'A', questions)
+  const side1 = answerByRole(identities, 'A', questions[1])
+  const side2 = answerByRole(identities, 'A', questions[2])
+  console.log(`crazy sentence = ${result}`)
+  console.log(JSON.stringify(identities, null, 2));
+  expect(result).toEqual(side1 === side2)
+})
