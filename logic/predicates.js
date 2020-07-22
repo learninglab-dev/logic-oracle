@@ -1,6 +1,7 @@
 
-export default function applyPredicates(identities, answerer, questions) {
-  let [predicate, params] = questions
+export default function applyPredicates(identities, answerer, question) {
+  let [predicate, params] = question
+  //currently setting defaults here; this might not work if this gets broken out further with quantifiers
   if (!params) {
     switch (predicate) {
       case 'Same':
@@ -14,32 +15,111 @@ export default function applyPredicates(identities, answerer, questions) {
   }
   switch (predicate) {
     case 'Knight':
-      return identities[params[0]] === 'K' ? true : false
+      return Knight(identities, params)
     case 'Knave':
-      return identities[params[0]] === 'N' ? true : false
+      return Knave(identities, params)
     case 'Dragon':
-      return identities[params[0]] === 'D' ? true : false
+      return Dragon(identities, params)
     case 'Monk':
-      return identities[params[0]] === 'M' ? true : false
+      return Monk(identities, params)
     case 'Same':
+      return Same(identities, params)
     case 'Different':
       if (params[0] === 'all') {
-        const characters = Object.keys(identities)
-        const roles = new Set(Object.values(identities))
-        const allDiff = characters.length === roles.size
-        const mismatch = characters.find((char, i) => identities[char] !== identities[characters[0]])
-        if (predicate === 'Same') {
-          return mismatch ? false : true
-        }
-        return allDiff
+        return Same(identities, ['none'])
+      } else if (params[0] === 'none') {
+        return Same(identities, ['all'])
       }
-      const roles = new Set(params.map(id => identities[id]))
-      const match = params.length === roles.size ? false : true
-      if (predicate === 'Same') {
-        return match
-      }
-      return !match
+      return !Same(identities, params)
     default:
       return "something went wrong and I don't have an answer"
+  }
+}
+
+function Knight(identities, params) {
+  var roles = new Set(Object.values(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.has('K') && roles.size === 1 ? true : false
+    case 'some':
+      return roles.has('K')
+    case 'none':
+      return !roles.has('K')
+    default:
+      for (const name of params) {
+        if (identities[name] !== 'K') {
+          return false
+        }
+      }
+      return true
+  }
+}
+function Knave(identities, params) {
+  var roles = new Set(Object.values(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.has('N') && roles.size === 1 ? true : false
+    case 'some':
+      return roles.has('N')
+    case 'none':
+      return !roles.has('N')
+    default:
+      for (const name of params) {
+        if (identities[name] !== 'N') {
+          return false
+        }
+      }
+      return true
+  }
+}
+function Dragon(identities, params) {
+  var roles = new Set(Object.values(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.has('D') && roles.size === 1 ? true : false
+    case 'some':
+      return roles.has('D')
+    case 'none':
+      return !roles.has('D')
+    default:
+      for (const name of params) {
+        if (identities[name] !== 'D') {
+          return false
+        }
+      }
+      return true
+  }
+}
+function Monk(identities, params) {
+  var roles = new Set(Object.values(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.has('M') && roles.size === 1 ? true : false
+    case 'some':
+      return roles.has('M')
+    case 'none':
+      return !roles.has('M')
+    default:
+      for (const name of params) {
+        if (identities[name] !== 'M') {
+          return false
+        }
+      }
+      return true
+  }
+}
+function Same(identities, params){
+  var roles = new Set(Object.values(identities))
+  var characters = new Set(Object.keys(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.size === 1 ? true : false
+    case 'some':
+      return roles.size === characters.size ? false : true
+    case 'none':
+      return roles.size === characters.size ? true : false
+    default:
+      const selected = new Set(params.map(id => identities[id]))
+      return selected.size === 1 ? true : false
   }
 }
