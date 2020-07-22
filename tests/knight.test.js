@@ -15,12 +15,6 @@ const identities = {
   D: 'K'
 }
 
-// const questions = {
-//   1: [predicate, params],
-//   2: [predicate, params],
-//   c: 'AND'
-// }
-
 
 test('Are you a knight? returns true', () => {
   console.log(identities)

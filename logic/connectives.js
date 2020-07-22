@@ -1,6 +1,26 @@
 import applyPredicates from './predicates.js'
 
 
+// TODO: allow more than two conjuncts for and/or ??
+export function applyConnectives(question) {
+  switch (question.c) {
+    case 'AND':
+      return question[1] && question[2] ? true : false
+    case 'OR':
+      return question[1] || question[2] ? true : false
+    case 'NOT':
+      return !question[1] ? true : false
+    case 'IF':
+      return question[1] && !question[2] ? false : true
+    case 'IFF':
+      return (question[1] && question[2]) || (!question[1] && !question[2]) ? true : false
+    default:
+      console.log('invalid connective');
+      return
+  }
+}
+
+
 // export function conjunction(identities, answerer, questions) {
 //   const qs = Object.keys(questions).filter(key => key !== 'c')
 //   for (const q of qs) {
@@ -31,23 +51,3 @@ import applyPredicates from './predicates.js'
 //   }
 //   return false
 // }
-
-// TODO: allow more than two conjuncts for and/or ??
-export function applyConnectives(question) {
-  switch (question.c) {
-    case 'AND':
-      return question[1] && question[2] ? true : false
-    case 'OR':
-      return question[1] || question[2] ? true : false
-    case 'NOT':
-      return !question[1] ? true : false
-    case 'IF':
-      return question[1] && !question[2] ? false : true
-    case 'IFF':
-      return (question[1] && question[2]) || (!question[1] && !question[2]) ? true : false
-    default:
-      console.log('invalid connective');
-      return
-  }
-
-}
