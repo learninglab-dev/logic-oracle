@@ -143,3 +143,46 @@ test('Crazy sentence...', () => {
   console.log(JSON.stringify(identities, null, 2));
   expect(result).toEqual(side1 === side2)
 })
+
+test('At least one of us is a Knight returns true', () => {
+  const result = answerByRole(identities, 'A', ['Knight', ['least', 1]])
+  expect(result).toBe(true)
+})
+
+test('At most one of us is a Knight returns false', () => {
+  const result = answerByRole(identities, 'A', ['Knight', ['most', 1]])
+  expect(result).toBe(false)
+})
+
+test('More than one of us is a Knight returns true', () => {
+  const result = answerByRole(identities, 'A', ['Knight', ['more', 1]])
+  expect(result).toBe(true)
+})
+
+test('More than one of us is a Dragon returns false', () => {
+  const result = answerByRole(identities, 'A', ['Dragon', ['more', 1]])
+  expect(result).toBe(false)
+})
+
+test('At least one of us is a Knave returns true', () => {
+  const result = answerByRole(identities, 'A', ['Knave', ['least', 1]])
+  expect(result).toBe(true)
+})
+
+test('Some of us are Monks return the correct truth value', () => {
+  const result = answerByRole(identities, 'A', ['Monk', ['some']])
+  const existsMonk = identities.C === 'M'
+  console.log(`Monk? ${result}`)
+  expect(result).toEqual(existsMonk)
+})
+
+test('At least 2 of us are the same returns true', () => {
+  const result = answerByRole(identities, 'A', ['Same', ['least', 2]])
+  expect(result).toBe(true)
+})
+
+test('At least 3 of us are the same returns true only if C is a Knight', () => {
+  const result = answerByRole(identities, 'A', ['Same', ['least', 3]])
+  const knightC = identities.C === 'K'
+  expect(result).toEqual(knightC)
+})

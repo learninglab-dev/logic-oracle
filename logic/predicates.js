@@ -38,6 +38,7 @@ export default function applyPredicates(identities, answerer, question) {
 
 function Knight(identities, params) {
   var roles = new Set(Object.values(identities))
+  var count = Object.values(identities).filter(id => id === 'K').length
   switch (params[0]) {
     case 'all':
       return roles.has('K') && roles.size === 1 ? true : false
@@ -45,6 +46,14 @@ function Knight(identities, params) {
       return roles.has('K')
     case 'none':
       return !roles.has('K')
+    case 'more':
+      return count > params[1] ? true : false
+    case 'least':
+      return count >= params[1] ? true : false
+    case 'less':
+      return count < params[1] ? true : false
+    case 'most':
+      return count <= params[1] ? true : false
     default:
       for (const name of params) {
         if (identities[name] !== 'K') {
@@ -56,6 +65,7 @@ function Knight(identities, params) {
 }
 function Knave(identities, params) {
   var roles = new Set(Object.values(identities))
+  var count = Object.values(identities).filter(id => id === 'N').length
   switch (params[0]) {
     case 'all':
       return roles.has('N') && roles.size === 1 ? true : false
@@ -63,6 +73,14 @@ function Knave(identities, params) {
       return roles.has('N')
     case 'none':
       return !roles.has('N')
+    case 'more':
+      return count > params[1] ? true : false
+    case 'least':
+      return count >= params[1] ? true : false
+    case 'less':
+      return count < params[1] ? true : false
+    case 'most':
+      return count <= params[1] ? true : false
     default:
       for (const name of params) {
         if (identities[name] !== 'N') {
@@ -74,6 +92,7 @@ function Knave(identities, params) {
 }
 function Dragon(identities, params) {
   var roles = new Set(Object.values(identities))
+  var count = Object.values(identities).filter(id => id === 'D').length
   switch (params[0]) {
     case 'all':
       return roles.has('D') && roles.size === 1 ? true : false
@@ -81,6 +100,14 @@ function Dragon(identities, params) {
       return roles.has('D')
     case 'none':
       return !roles.has('D')
+    case 'more':
+      return count > params[1] ? true : false
+    case 'least':
+      return count >= params[1] ? true : false
+    case 'less':
+      return count < params[1] ? true : false
+    case 'most':
+      return count <= params[1] ? true : false
     default:
       for (const name of params) {
         if (identities[name] !== 'D') {
@@ -92,6 +119,7 @@ function Dragon(identities, params) {
 }
 function Monk(identities, params) {
   var roles = new Set(Object.values(identities))
+  var count = Object.values(identities).filter(id => id === 'M').length
   switch (params[0]) {
     case 'all':
       return roles.has('M') && roles.size === 1 ? true : false
@@ -99,6 +127,14 @@ function Monk(identities, params) {
       return roles.has('M')
     case 'none':
       return !roles.has('M')
+    case 'more':
+      return count > params[1] ? true : false
+    case 'least':
+      return count >= params[1] ? true : false
+    case 'less':
+      return count < params[1] ? true : false
+    case 'most':
+      return count <= params[1] ? true : false
     default:
       for (const name of params) {
         if (identities[name] !== 'M') {
@@ -111,6 +147,15 @@ function Monk(identities, params) {
 function Same(identities, params){
   var roles = new Set(Object.values(identities))
   var characters = new Set(Object.keys(identities))
+  var counts = {
+    K: Object.values(identities).filter(id => id === 'K').length,
+    N: Object.values(identities).filter(id => id === 'N').length,
+    D: Object.values(identities).filter(id => id === 'D').length,
+    M: Object.values(identities).filter(id => id === 'M').length
+  }
+  var matches = Object.values(counts)
+    .filter(count => count > 1)
+    .reduce((x, y) => x+y, 0)
   switch (params[0]) {
     case 'all':
       return roles.size === 1 ? true : false
@@ -118,6 +163,8 @@ function Same(identities, params){
       return roles.size === characters.size ? false : true
     case 'none':
       return roles.size === characters.size ? true : false
+    case 'least':
+      return matches >= params[1] ? true : false
     default:
       const selected = new Set(params.map(id => identities[id]))
       return selected.size === 1 ? true : false
