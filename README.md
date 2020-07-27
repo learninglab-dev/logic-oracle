@@ -1,4 +1,4 @@
-# answer-deducer
+# logic-oracle
 ### a.k.a The Oracle of Knights & Knaves
 
 A module for deducing answers to yes-no questions on the Island of Knights & Knaves
