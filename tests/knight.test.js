@@ -186,3 +186,9 @@ test('At least 3 of us are the same returns true only if C is a Knight', () => {
   const knightC = identities.C === 'K'
   expect(result).toEqual(knightC)
 })
+
+test('At most 2 of us are the same returns true only if C is not a Knight', () => {
+  const result = answerByRole(identities, 'A', ['Same', ['most', 2]])
+  const knightC = identities.C === 'K'
+  expect(result).toEqual(!knightC)
+})

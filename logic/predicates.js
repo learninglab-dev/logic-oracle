@@ -163,8 +163,14 @@ function Same(identities, params){
       return roles.size === characters.size ? false : true
     case 'none':
       return roles.size === characters.size ? true : false
+    case 'more':
+      return matches > params[1] ? true : false
     case 'least':
       return matches >= params[1] ? true : false
+    case 'less':
+      return matches < params[1] ? true : false
+    case 'most':
+      return matches <= params[1] ? true : false
     default:
       const selected = new Set(params.map(id => identities[id]))
       return selected.size === 1 ? true : false
