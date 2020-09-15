@@ -181,14 +181,46 @@ test('At least 2 of us are the same returns true', () => {
   expect(result).toBe(true)
 })
 
-test('At least 3 of us are the same returns true only if C is a Knight', () => {
+test('At least 3 of us are the same returns true only if C is a Knight or Knave', () => {
   const result = answerByRole(identities, 'A', ['Same', ['least', 3]])
-  const knightC = identities.C === 'K'
+  const knightC = identities.C === 'K' || identities.C === 'N'
   expect(result).toEqual(knightC)
 })
 
-test('At most 2 of us are the same returns true only if C is not a Knight', () => {
+test('At most 2 of us are the same returns true only if C is not a Knight or Knave', () => {
   const result = answerByRole(identities, 'A', ['Same', ['most', 2]])
-  const knightC = identities.C === 'K'
+  const knightC = identities.C === 'K' || identities.C === 'N'
   expect(result).toEqual(!knightC)
+})
+
+test('Negation + all is parsed as "not all" rather than "all not"', () => {
+  const question = {
+    1: ['Knave', ['all']],
+    c: 'NOT'
+  }
+  const result = answerByRole(identities, 'A', question)
+  console.log('not all = ' + result)
+  expect(result).toBe(true)
+})
+
+test('Negation + more than is parsed as "not more than" rather than "more than # not"', () => {
+  const question = {
+    1: ['Knave', ['more', 1]],
+    c: 'NOT'
+  }
+  const knaveC = identities.C === 'N'
+  const result = answerByRole(identities, 'A', question)
+  console.log('not more than: ' + identities.C + ' ' + result)
+  expect(result).toBe(!knaveC)
+})
+
+test('Negation + less than is parsed as "not less than" rather than "less than # not"', () => {
+  const question = {
+    1: ['Knave', ['less', 2]],
+    c: 'NOT'
+  }
+  const knaveC = identities.C === 'N'
+  const result = answerByRole(identities, 'A', question)
+  console.log('not less than: ' + identities.C + ' ' + result)
+  expect(result).toBe(knaveC)
 })

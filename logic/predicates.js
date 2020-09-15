@@ -156,6 +156,7 @@ function Same(identities, params){
   var matches = Object.values(counts)
     .filter(count => count > 1)
     .reduce((x, y) => x+y, 0)
+  var max = Math.max(...Object.values(counts))
   switch (params[0]) {
     case 'all':
       return roles.size === 1 ? true : false
@@ -164,13 +165,13 @@ function Same(identities, params){
     case 'none':
       return roles.size === characters.size ? true : false
     case 'more':
-      return matches > params[1] ? true : false
+      return max > params[1] ? true : false
     case 'least':
-      return matches >= params[1] ? true : false
+      return max >= params[1] ? true : false
     case 'less':
-      return matches < params[1] ? true : false
+      return max < params[1] ? true : false
     case 'most':
-      return matches <= params[1] ? true : false
+      return max <= params[1] ? true : false
     default:
       const selected = new Set(params.map(id => identities[id]))
       return selected.size === 1 ? true : false

@@ -1,7 +1,7 @@
 {
-  "name": "answer-deducer",
+  "name": "logic-oracle",
   "version": "1.0.0",
-  "description": "A module for deducing answers to yes-no questions",
+  "description": "Answers questions for Knights & Knaves logic games",
   "main": "index.js",
   "type": "module",
   "jest": {
@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/learninglab-dev/answer-deducer.git"
+    "url": "git+https://github.com/learninglab-dev/logic-oracle.git"
   },
   "author": "ldavidson",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/learninglab-dev/answer-deducer/issues"
+    "url": "https://github.com/learninglab-dev/logic-oracle/issues"
   },
-  "homepage": "https://github.com/learninglab-dev/answer-deducer#readme",
+  "homepage": "https://github.com/learninglab-dev/logic-oracle#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.10.4",
     "jest": "^26.1.0"
