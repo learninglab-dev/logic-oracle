@@ -1,6 +1,6 @@
 {
   "name": "logic-oracle",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Answers questions for Knights & Knaves logic games",
   "main": "index.js",
   "type": "module",
