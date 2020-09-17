@@ -25,12 +25,7 @@ export default function applyPredicates(identities, answerer, question) {
     case 'Same':
       return Same(identities, params)
     case 'Different':
-      if (params[0] === 'all') {
-        return Same(identities, ['none'])
-      } else if (params[0] === 'none') {
-        return Same(identities, ['all'])
-      }
-      return !Same(identities, params)
+      return Different(identities, params)
     default:
       return "something went wrong and I don't have an answer"
   }
@@ -175,5 +170,28 @@ function Same(identities, params){
     default:
       const selected = new Set(params.map(id => identities[id]))
       return selected.size === 1 ? true : false
+  }
+}
+function Different(identities, params){
+  var roles = new Set(Object.values(identities))
+  var characters = new Set(Object.keys(identities))
+  switch (params[0]) {
+    case 'all':
+      return roles.size === characters.size ? true : false
+    case 'some':
+      return roles.size === characters.size ? false : true
+    case 'none':
+      return roles.size === 1 ? true : false
+    case 'more':
+      return roles.size > params[1] ? true : false
+    case 'least':
+      return roles.size >= params[1] ? true : false
+    case 'less':
+      return roles.size < params[1] ? true : false
+    case 'most':
+      return roles.size <= params[1] ? true : false
+    default:
+      const selected = new Set(params.map(id => identities[id]))
+      return selected.size === params.length ? true : false
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "logic-oracle",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Answers questions for Knights & Knaves logic games",
   "main": "index.js",
   "type": "module",
@@ -11,7 +11,9 @@
     ]
   },
   "babel": {
-    "presets": ["@babel/preset-env"]
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "eslintConfig": {
     "env": {
@@ -19,8 +21,8 @@
       "es6": true
     },
     "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module"
+      "ecmaVersion": 6,
+      "sourceType": "module"
     }
   },
   "scripts": {

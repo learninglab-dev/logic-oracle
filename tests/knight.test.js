@@ -181,15 +181,15 @@ test('At least 2 of us are the same returns true', () => {
   expect(result).toBe(true)
 })
 
-test('At least 3 of us are the same returns true only if C is a Knight or Knave', () => {
+test('At least 3 of us are the same returns true only if C is a Knight', () => {
   const result = answerByRole(identities, 'A', ['Same', ['least', 3]])
-  const knightC = identities.C === 'K' || identities.C === 'N'
+  const knightC = identities.C === 'K'
   expect(result).toEqual(knightC)
 })
 
-test('At most 2 of us are the same returns true only if C is not a Knight or Knave', () => {
+test('At most 2 of us are the same returns true only if C is not a Knight', () => {
   const result = answerByRole(identities, 'A', ['Same', ['most', 2]])
-  const knightC = identities.C === 'K' || identities.C === 'N'
+  const knightC = identities.C === 'K'
   expect(result).toEqual(!knightC)
 })
 
@@ -223,4 +223,26 @@ test('Negation + less than is parsed as "not less than" rather than "less than #
   const result = answerByRole(identities, 'A', question)
   console.log('not less than: ' + identities.C + ' ' + result)
   expect(result).toBe(knaveC)
+})
+
+test('Are A, B, C, D different returns false', () => {
+  const result = answerByRole(identities, 'A', ['Different', ['A', 'B', 'C', 'D']])
+  expect(result).toBe(false)
+})
+
+test('Are A, B, C, D the same returns false', () => {
+  const result = answerByRole(identities, 'A', ['Same', ['A', 'B', 'C', 'D']])
+  expect(result).toBe(false)
+})
+
+test('Are A, B, C different only if C is a Dragon or Monk', () => {
+  const dragonMonkC = identities.C === 'D' || identities.C === 'M'
+  const result = answerByRole(identities, 'A', ['Different', ['A', 'B', 'C']])
+  expect(result).toBe(dragonMonkC)
+})
+
+test('Are at least 3 of you different only if C is a Dragon or Monk', () => {
+  const dragonMonkC = identities.C === 'D' || identities.C === 'M'
+  const result = answerByRole(identities, 'A', ['Different', ['least', 3]])
+  expect(result).toBe(dragonMonkC)
 })
